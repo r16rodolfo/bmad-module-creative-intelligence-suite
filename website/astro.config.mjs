@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import rehypeMarkdownLinks from './src/rehype-markdown-links.js';
 import rehypeBasePaths from './src/rehype-base-paths.js';
 import { getSiteUrl } from './src/lib/site-url.mjs';
+import { locales } from './src/lib/locales.mjs';
 
 const siteUrl = getSiteUrl();
 const urlParts = new URL(siteUrl);
@@ -40,6 +41,10 @@ export default defineConfig({
     starlight({
       title: 'Creative Intelligence Suite',
       tagline: 'Innovation, brainstorming, and problem-solving agents for the BMad Method.',
+
+      // i18n: locale config from shared module (website/src/lib/locales.mjs)
+      defaultLocale: 'root',
+      locales,
 
       favicon: '/favicon.ico',
 
@@ -83,36 +88,61 @@ export default defineConfig({
 
       // Sidebar configuration (Diataxis structure)
       sidebar: [
-        { label: 'Welcome', slug: 'index' },
+        {
+          label: 'Welcome',
+          translations: { 'zh-CN': '欢迎' },
+          slug: 'index',
+        },
         {
           label: 'Tutorials',
+          translations: { 'zh-CN': '教程' },
           collapsed: false,
           autogenerate: { directory: 'tutorials' },
         },
         {
           label: 'How-To Guides',
+          translations: { 'zh-CN': '操作指南' },
           collapsed: true,
           autogenerate: { directory: 'how-to' },
         },
         {
           label: 'Explanation',
+          translations: { 'zh-CN': '概念说明' },
           collapsed: true,
           autogenerate: { directory: 'explanation' },
         },
         {
           label: 'Reference',
+          translations: { 'zh-CN': '参考' },
           collapsed: true,
           autogenerate: { directory: 'reference' },
         },
         {
           label: 'BMad Ecosystem',
+          translations: { 'zh-CN': 'BMad 生态系统' },
           collapsed: false,
           items: [
-            { label: 'BMad Method', link: 'https://docs.bmad-method.org/', attrs: { target: '_blank' } },
-            { label: 'BMad Builder', link: 'https://bmad-builder-docs.bmad-method.org/', attrs: { target: '_blank' } },
-            { label: 'Game Dev Studio', link: 'https://game-dev-studio-docs.bmad-method.org/', attrs: { target: '_blank' } },
+            {
+              label: 'BMad Method',
+              translations: { 'zh-CN': 'BMad 方法论' },
+              link: 'https://docs.bmad-method.org/',
+              attrs: { target: '_blank' },
+            },
+            {
+              label: 'BMad Builder',
+              translations: { 'zh-CN': 'BMad 构建器' },
+              link: 'https://bmad-builder-docs.bmad-method.org/',
+              attrs: { target: '_blank' },
+            },
+            {
+              label: 'Game Dev Studio',
+              translations: { 'zh-CN': '游戏开发工作室' },
+              link: 'https://game-dev-studio-docs.bmad-method.org/',
+              attrs: { target: '_blank' },
+            },
             {
               label: 'Test Architect (TEA)',
+              translations: { 'zh-CN': '测试架构师 (TEA)' },
               link: 'https://bmad-code-org.github.io/bmad-method-test-architecture-enterprise/',
               attrs: { target: '_blank' },
             },
